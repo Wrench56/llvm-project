@@ -7,6 +7,7 @@ add_subdirectory(${LIBC_TARGET_ARCHITECTURE})
 add_object_library(
   linux_util
   SRCS
+    access.cpp
     exit.cpp
     fcntl.cpp
   HDRS

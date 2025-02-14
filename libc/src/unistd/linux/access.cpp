@@ -8,7 +8,7 @@
 
 #include "src/unistd/access.h"
 
-#include "src/__support/OSUtil/syscall.h" // For internal syscall function.
+#include "src/__support/OSUtil/access.h"
 #include "src/__support/common.h"
 
 #include "hdr/fcntl_macros.h"
@@ -19,20 +19,7 @@
 namespace LIBC_NAMESPACE_DECL {
 
 LLVM_LIBC_FUNCTION(int, access, (const char *path, int mode)) {
-#ifdef SYS_access
-  int ret = LIBC_NAMESPACE::syscall_impl<int>(SYS_access, path, mode);
-#elif defined(SYS_faccessat)
-  int ret =
-      LIBC_NAMESPACE::syscall_impl<int>(SYS_faccessat, AT_FDCWD, path, mode, 0);
-#else
-#error "access and faccessat syscalls not available."
-#endif
-
-  if (ret < 0) {
-    libc_errno = -ret;
-    return -1;
-  }
-  return 0;
+    return internal::access(path, mode);
 }
 
 } // namespace LIBC_NAMESPACE_DECL
