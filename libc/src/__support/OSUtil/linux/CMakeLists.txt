@@ -10,6 +10,7 @@ add_object_library(
     access.cpp
     exit.cpp
     fcntl.cpp
+    sigaction.cpp
   HDRS
     io.h
     syscall.h
@@ -23,6 +24,7 @@ add_object_library(
     libc.hdr.types.struct_flock64
     libc.hdr.types.struct_f_owner_ex
     libc.hdr.types.off_t
+    libc.hdr.types.sigset_t
 )
 
 add_header_library(
