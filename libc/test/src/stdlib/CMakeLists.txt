@@ -347,6 +347,16 @@ add_libc_test(
     libc.src.stdlib.srand
 )
 
+add_libc_test(
+  system_test
+  SUITE
+    libc-stdlib-tests
+  SRCS
+    system_test.cpp
+  DEPENDS
+    libc.src.stdlib.system
+)
+
 if(LLVM_LIBC_FULL_BUILD)
 
   add_libc_test(

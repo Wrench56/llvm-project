@@ -9,3 +9,13 @@ add_entrypoint_object(
     libc.src.signal.raise
     libc.src.stdlib._Exit
 )
+
+add_entrypoint_object(
+  system
+  SRCS
+    system.cpp
+  HDRS
+    ../system.h
+  DEPENDS
+    libc.include.stdlib
+)
